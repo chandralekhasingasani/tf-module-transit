@@ -3,7 +3,7 @@ resource "aws_ec2_transit_gateway" "main" {
   default_route_table_association = "disable"
   default_route_table_propagation = "disable"
   tags = {
-    Name = "tgw-${ENV}"
+    Name = "tgw-${var.ENV}"
   }
 }
 
