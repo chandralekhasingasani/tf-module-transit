@@ -2,11 +2,14 @@ resource "aws_ec2_transit_gateway" "main" {
   description = "${var.ENV}-tgw"
   default_route_table_association = "disable"
   default_route_table_propagation = "disable"
+  tags = {
+    Name = "tgw-${ENV}"
+  }
 }
 
 resource "aws_ec2_transit_gateway_vpc_attachment" "default-vpc" {
   tags = {
-    Name = "tgw-default-vpc"
+    Name = "tgw-default-vpc-${ENV}"
   }
   subnet_ids         = [aws_subnet.private-subnet.id]
   transit_gateway_id = aws_ec2_transit_gateway.main.id
@@ -15,7 +18,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "default-vpc" {
 
 resource "aws_ec2_transit_gateway_route_table" "default-vpc" {
   tags = {
-    Name = "tgw-rt-default-vpc"
+    Name = "tgw-rt-default-vpc-${ENV}"
   }
   transit_gateway_id = aws_ec2_transit_gateway.main.id
 }
