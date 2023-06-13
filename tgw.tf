@@ -14,6 +14,9 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "default-vpc" {
 }
 
 resource "aws_ec2_transit_gateway_route_table" "default-vpc" {
+  tags = {
+    Name = "tgw-rt-default-vpc"
+  }
   transit_gateway_id = aws_ec2_transit_gateway.main.id
 }
 
