@@ -13,7 +13,7 @@ resource "aws_ec2_transit_gateway_vpc_attachment" "default-vpc" {
   }
   transit_gateway_default_route_table_association = false
   transit_gateway_default_route_table_propagation = false
-  subnet_ids         = aws_subnet.private.*.id
+  subnet_ids         = flatten(aws_subnet.private.*.id)
   transit_gateway_id = aws_ec2_transit_gateway.main.id
   vpc_id             = data.aws_vpc.default-vpc.id
 }
