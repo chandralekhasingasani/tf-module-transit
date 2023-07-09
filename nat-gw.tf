@@ -10,3 +10,7 @@ resource "aws_nat_gateway" "gw" {
 resource "aws_eip" "elastic_ip" {
   domain   = "vpc"
 }
+
+output "NAT_GW_IP" {
+  value = aws_nat_gateway.gw.private_ip
+}
